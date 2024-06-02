@@ -1,0 +1,12 @@
+POST http://localhost:3333/habits
+Content-type: application/json
+
+
+{
+    "title": "Exemplo de Hábito",
+    "weekDays": [0,1,2]
+}
+
+######
+
+GET http://localhost:3333/day?date=2024-06-02T03:00:00.000z

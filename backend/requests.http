@@ -9,4 +9,7 @@ Content-type: application/json
 
 ######
 
-GET http://localhost:3333/day?date=2024-06-02T03:00:00.000z
+GET http://localhost:3333/day?date=2024-06-03T03:00:00.000z
+
+#########
+PATCH http://localhost:3333/habits/68233b34-59ad-4c3b-8401-e674142570c0/toggle

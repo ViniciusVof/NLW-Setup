@@ -1,7 +1,31 @@
 import { ScrollView, Text, TextInput, View } from "react-native";
 import { BackButton } from "../../components/BackButton";
+import { Checkbox } from "../../components/Checkbox";
+import { useState } from "react";
+
+const availableWeekDays = [
+  "Domingo",
+  "Segunda-feira",
+  "Terça-feira",
+  "Quarta-feira",
+  "Quinta-feira",
+  "Sexta-feira",
+  "Sábado",
+];
 
 export function New() {
+  const [weekDays, setWeekDays] = useState<number[]>([]);
+
+  function handleToggleWeekDays(weekDayIndex: number) {
+    if (weekDays.includes(weekDayIndex)) {
+      setWeekDays((prevState) =>
+        prevState.filter((weekDay) => weekDay !== weekDayIndex)
+      );
+    } else {
+      setWeekDays((prevState) => [...prevState, weekDayIndex]);
+    }
+  }
+
   return (
     <View className="flex-1 bg-background px-8 pt-16 ">
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -16,6 +40,19 @@ export function New() {
         </Text>
 
         <TextInput className="h-12 pl-4 rounded-lg mt-3 bg-zinc-800 text-white focus:border-2 border-green-600" />
+
+        <Text className="mt-4 mb-3 text-white font-semibold text-base">
+          Qual a recorrência?
+        </Text>
+
+        {availableWeekDays.map((weekDay, index) => (
+          <Checkbox
+            key={`${index}-${weekDay}`}
+            title={weekDay}
+            checked={weekDays.includes(index)}
+            onPress={() => handleToggleWeekDays(index)}
+          />
+        ))}
       </ScrollView>
     </View>
   );
